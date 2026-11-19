@@ -280,7 +280,7 @@ Distributed under the **MIT License**. Add a `LICENSE` file to the repository ro
 
 **Vishvajit Madavan** — BCA student | Aspiring SOC & Web Security Analyst
 
-[GitHub](https://github.com/<your-username>) · [LinkedIn](https://linkedin.com/in/<your-profile>) · [Email](mailto:<your-email>)
+[GitHub](https://github.com/visshh05) · [LinkedIn](https://www.linkedin.com/in/vishavajit-madavan-a3abb832a) · [Email](mailto:vishavajitmadavan15@gmail.com)
 
 ---
 
