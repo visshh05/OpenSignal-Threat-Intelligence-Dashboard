@@ -1,21 +1,32 @@
 <div align="center">
 
-# OpenSignal — Threat Intelligence Dashboard
+<!-- Animated cyber-themed header; GitHub loads this SVG from readme-typing-svg.demolab.com. -->
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&duration=2800&pause=900&color=00F5D4&center=true&vCenter=true&width=850&lines=%3E+OPEN+SIGNAL+%2F%2F+THREAT+INTELLIGENCE;%3E+OSINT+%7C+IOC+TRIAGE+%7C+SOC+WORKFLOW;%3E+INVESTIGATE.+ENRICH.+UNDERSTAND." alt="OpenSignal animated title" />
 
-**Investigate any domain, IP, or URL across VirusTotal, Shodan, and Certificate Transparency in a single query.**
+# 🛡️ OpenSignal — Threat Intelligence Dashboard
 
-![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?logo=python&logoColor=white)
-![Flask](https://img.shields.io/badge/Flask-3.1-000000?logo=flask&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6-F7DF1E?logo=javascript&logoColor=black)
-![OSINT](https://img.shields.io/badge/Focus-OSINT%20%7C%20Threat%20Intel-2ea44f)
-![License](https://img.shields.io/badge/License-MIT-blue)
-![Status](https://img.shields.io/badge/Status-Active-brightgreen)
+**🔎 Investigate any domain, IP, or URL across VirusTotal, Shodan, and Certificate Transparency in a single query.**
+
+[![GitHub stars](https://img.shields.io/github/stars/visshh05/opensignal?style=for-the-badge&logo=github&color=00d9ff)](https://github.com/visshh05/opensignal/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/visshh05/opensignal?style=for-the-badge&logo=github&color=7b2cff)](https://github.com/visshh05/opensignal/network)
+[![Last commit](https://img.shields.io/github/last-commit/visshh05/opensignal?style=for-the-badge&logo=git&color=00c896)](https://github.com/visshh05/opensignal/commits)
+
+![Python](https://img.shields.io/badge/Python-3.9%2B-00D9FF?style=for-the-badge&logo=python&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-3.1-111827?style=for-the-badge&logo=flask&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![OSINT](https://img.shields.io/badge/Focus-OSINT%20%7C%20Threat%20Intel-00C896?style=for-the-badge&logo=linux&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-7B2CFF?style=for-the-badge&logo=opensourceinitiative&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Active-00C896?style=for-the-badge&logo=hackthebox&logoColor=white)
+
+<br/>
+
+`[ ANALYZE ]` &nbsp; ⚡ &nbsp; ` [ ENRICH ] ` &nbsp; ⚡ &nbsp; `[ REPORT ]`
 
 </div>
 
 ---
 
-## Overview
+## 🧭 Overview
 
 OpenSignal is a web-based **threat intelligence enrichment tool** built for the kind of triage a SOC analyst does dozens of times a day: *"Is this indicator suspicious, what is it exposing, and what certificates exist for it?"*
 
@@ -27,7 +38,7 @@ The tool deliberately reports **raw provider evidence** (detections, open ports,
 
 ---
 
-## Key Features
+## ✨ Key Features
 
 - **Multi-source enrichment**: VirusTotal (reputation and detections), Shodan (exposed services, CVEs, hostnames), crt.sh (certificate transparency history)
 - **Concurrent lookups**: provider queries run in parallel using `ThreadPoolExecutor` with a 9-second per-request timeout
@@ -41,7 +52,7 @@ The tool deliberately reports **raw provider evidence** (detections, open ports,
 
 ---
 
-## Tech Stack
+## 🧰 Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -52,7 +63,7 @@ The tool deliberately reports **raw provider evidence** (detections, open ports,
 
 ---
 
-## How It Works
+## ⚙️ How It Works
 
 ```mermaid
 flowchart LR
@@ -77,14 +88,14 @@ flowchart LR
 
 ---
 
-## Getting Started
+## 🚀 Getting Started
 
-### Prerequisites
+### 📋 Prerequisites
 
 - Python 3.9 or newer
 - (Optional) free API keys for [VirusTotal](https://www.virustotal.com/) and [Shodan](https://www.shodan.io/)
 
-### Installation
+### 📦 Installation
 
 ```bash
 # 1. Clone the repository
@@ -103,7 +114,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Configuration
+### 🔑 Configuration
 
 API keys are read from environment variables. The app runs without them, and providers without a key simply report `needs_key`. crt.sh is public and needs no key.
 
@@ -117,7 +128,7 @@ export VT_API_KEY="your-virustotal-key"
 export SHODAN_API_KEY="your-shodan-key"
 ```
 
-### Run
+### ▶️ Run
 
 ```bash
 python integrity_checker.py
@@ -127,15 +138,15 @@ Open **http://127.0.0.1:5000** and click **Load demo data** to preview the dashb
 
 ---
 
-## Usage
+## 🕹️ Usage
 
-### From the dashboard
+### 🧪 From the dashboard
 
 1. Enter an indicator such as `example.com`, `198.51.100.24`, or `https://example.com/login`.
 2. Click **Run investigation**.
 3. Review the evidence summary and provider panels, then **Copy indicator** or **Export JSON**.
 
-### Accepted input
+### 🎯 Accepted input
 
 | Input | Normalized to | Type |
 |---|---|---|
@@ -145,7 +156,7 @@ Open **http://127.0.0.1:5000** and click **Load demo data** to preview the dashb
 | `bücher.de` | `xn--bcher-kva.de` | domain |
 | `ftp://x.com`, `bad_host.com`, `localhost` | rejected with `400` | n/a |
 
-### REST API
+### 🔌 REST API
 
 ```bash
 curl -X POST http://127.0.0.1:5000/api/lookup \
@@ -170,7 +181,7 @@ curl -X POST http://127.0.0.1:5000/api/lookup \
 
 ---
 
-## Screenshots
+## 🖥️ Screenshots
 
 > Add screenshots to a `docs/` folder and update the paths below.
 
@@ -182,7 +193,7 @@ curl -X POST http://127.0.0.1:5000/api/lookup \
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 opensignal/
@@ -199,7 +210,7 @@ opensignal/
 
 ---
 
-## Challenges & Solutions
+## 🧩 Challenges & Solutions
 
 | Challenge | Solution |
 |---|---|
@@ -212,7 +223,7 @@ opensignal/
 
 ---
 
-## Skills Demonstrated
+## 🧠 Skills Demonstrated
 
 - **Security / SOC:** OSINT, threat intelligence enrichment, indicator of compromise (IOC) triage, certificate transparency analysis, understanding of exposed services and CVE data
 - **Backend:** Python, Flask, REST API design, third-party API integration, concurrency, error handling, input validation
@@ -222,7 +233,7 @@ opensignal/
 
 ---
 
-## Impact Highlights
+## 📈 Impact Highlights
 
 - Consolidated **3 intelligence sources** into a **single-query workflow**, removing the need to pivot between separate tools during triage
 - Reduced total lookup time to roughly the slowest provider's response by running requests **in parallel**
@@ -232,7 +243,7 @@ opensignal/
 
 ---
 
-## Security Considerations
+## 🔐 Security Considerations
 
 This project is intended for local and learning use. Before exposing it to a network:
 
@@ -243,7 +254,7 @@ This project is intended for local and learning use. Before exposing it to a net
 
 ---
 
-## Roadmap
+## 🗺️ Roadmap
 
 - [ ] Automated tests (`pytest`) for `normalize_target()` and provider handlers with mocked responses
 - [ ] Additional sources: AbuseIPDB, URLhaus, AlienVault OTX, WHOIS/passive DNS
@@ -256,7 +267,7 @@ This project is intended for local and learning use. Before exposing it to a net
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
 Contributions, issues, and feature ideas are welcome.
 
@@ -270,19 +281,27 @@ Please keep changes focused, follow the existing code style, and never commit AP
 
 ---
 
-## License
+## 📜 License
 
 Distributed under the **MIT License**. Add a `LICENSE` file to the repository root before publishing.
 
 ---
 
-## Author
+## 👨‍💻 Author
 
 **Vishvajit Madavan** — BCA student | Aspiring SOC & Web Security Analyst
 
 [GitHub](https://github.com/visshh05) · [LinkedIn](https://www.linkedin.com/in/vishavajit-madavan-a3abb832a) · [Email](mailto:vishavajitmadavan15@gmail.com)
 
 ---
+
+<div align="center">
+
+<img src="https://img.shields.io/badge/STATUS-READY%20FOR%20ANALYSIS-00D9FF?style=for-the-badge&logo=protonvpn&logoColor=white" alt="Ready for analysis" />
+
+`01001111 01010000 01000101 01001110 01010011 01001001 01000111 01001110 01000001 01001100`
+
+</div>
 
 <div align="center">
 
