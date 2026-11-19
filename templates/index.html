@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d1411">
+  <title>OpenSignal | Threat Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <main class="main-area">
+      <header class="topbar">
+      <a class="brand" href="/" aria-label="OpenSignal home">
+        <span class="brand-mark"><span></span><span></span><span></span><span></span></span>
+        <span>open<span class="brand-light">signal</span></span>
+      </a>
+      <div class="status-pill"><i></i> PUBLIC-SOURCE OSINT</div>
+      </header>
+
+      <div class="content-wrap">
+        <section class="page-heading">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span>OPEN-SOURCE INVESTIGATION</div>
+            <h1>Threat intelligence,<br><span>without the noise.</span></h1>
+            <p class="subheading">Check a domain or IP against reputation, exposed-service, and certificate data.</p>
+          </div>
+        </section>
+
+        <section class="search-panel" id="investigation" aria-labelledby="search-title">
+          <div class="search-topline"><div><span class="section-index">01</span><h2 id="search-title">Start an investigation</h2></div><span class="input-hint">DOMAIN OR IP ADDRESS</span></div>
+          <form id="lookup-form">
+            <label class="sr-only" for="target-input">Domain or IP address</label>
+            <div class="search-row">
+              <span class="search-symbol" aria-hidden="true">⌕</span>
+              <input id="target-input" name="target" autocomplete="url" placeholder="example.com or 198.51.100.24" spellcheck="false" required>
+              <button id="submit-button" type="submit"><span>Analyze indicator</span><b>↗</b></button>
+            </div>
+            <div class="search-foot"><span>Supports domains, IPv4 / IPv6, and http(s) URLs</span><div class="demo-actions"><button class="demo-button" id="demo-button" type="button">Load domain demo <span>↗</span></button><button class="demo-button" id="ip-demo-button" type="button">Load IP demo <span>↗</span></button></div></div>
+          </form>
+          <div id="form-error" class="form-error" role="alert" hidden></div>
+        </section>
+
+        <section class="recent-section" id="recent-section" aria-label="Recent indicators" hidden>
+          <div class="recent-heading"><span>RECENT INDICATORS</span><button id="clear-history" class="text-button" type="button">Clear</button></div>
+          <div id="history-list" class="history-list"></div>
+        </section>
+
+        <section id="results" class="results-section" aria-live="polite" hidden></section>
+
+        <section id="empty-state" class="empty-state">
+          <div class="source-heading"><div><span class="section-index">02</span><h2>Signals from trusted sources</h2></div><span>3 DATA SOURCES</span></div>
+          <div class="source-strip" id="sources">
+            <div class="source-item"><span class="source-logo vt">V</span><span><b>VirusTotal</b><small>Reputation &amp; detections</small></span><em class="key-required">API KEY</em></div>
+            <div class="source-item"><span class="source-logo sh">S</span><span><b>Shodan</b><small>Exposed ports via InternetDB</small></span><em class="public-source">PUBLIC</em></div>
+            <div class="source-item"><span class="source-logo crt">C</span><span><b>crt.sh</b><small>Certificate transparency</small></span><em class="public-source">PUBLIC</em></div>
+          </div>
+        </section>
+        <footer class="page-footer"><span>OPENSIGNAL</span><span>PUBLIC DATA ONLY <i>·</i> VERIFY BEFORE ACTION</span></footer>
+      </div>
+    </main>
+  </div>
+  <script src="{{ url_for('static', filename='dashboard.js') }}" defer></script>
+</body>
+</html>

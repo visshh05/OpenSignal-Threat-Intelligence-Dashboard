@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenSignal | 7-Slide Threat Intelligence Presentation</title>
+<style>
+:root{
+  --bg:#07110f;--panel:#0d1c19;--panel2:#102520;--line:#21443a;
+  --green:#57f2a1;--mint:#a5ffd0;--text:#f0fff7;--muted:#a0b9ad;--amber:#ffd166;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text)}
+body{overflow:hidden}
+.deck{width:100%;height:100%;position:relative;background:
+ radial-gradient(circle at 85% 15%,rgba(40,210,133,.13),transparent 28%),
+ radial-gradient(circle at 5% 90%,rgba(40,210,133,.08),transparent 30%),var(--bg)}
+.slide{display:none;position:absolute;inset:0;padding:5.5vh 7vw 8vh;overflow:auto}
+.slide.active{display:flex;flex-direction:column;justify-content:center;animation:appear .32s ease}
+@keyframes appear{from{opacity:.25;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.eyebrow{font-size:clamp(11px,1.1vw,15px);letter-spacing:.22em;text-transform:uppercase;color:var(--green);font-weight:800;margin-bottom:16px}
+h1{font-size:clamp(36px,6.4vw,82px);line-height:1.02;margin:0 0 22px;letter-spacing:-.045em}
+h2{font-size:clamp(30px,4.2vw,54px);line-height:1.05;margin:0 0 28px;letter-spacing:-.035em}
+h3{font-size:clamp(17px,1.7vw,23px);margin:0 0 9px}
+p{color:var(--muted);font-size:clamp(15px,1.45vw,20px);line-height:1.55;margin:0}
+.accent{color:var(--green)}
+.sub{max-width:850px;font-size:clamp(17px,1.8vw,24px);margin-bottom:26px}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.pill{border:1px solid var(--line);background:rgba(13,28,25,.8);padding:10px 14px;border-radius:999px;color:var(--mint);font-size:14px}
+.kicker{color:var(--muted);font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card{background:linear-gradient(145deg,rgba(16,37,32,.95),rgba(9,23,20,.96));border:1px solid var(--line);border-radius:18px;padding:clamp(17px,2.1vw,27px);min-width:0}
+.icon{width:43px;height:43px;border-radius:13px;background:rgba(87,242,161,.11);display:grid;place-items:center;color:var(--green);font-size:22px;margin-bottom:17px}
+.card p{font-size:clamp(13px,1.2vw,17px)}
+.bullets{display:grid;gap:13px;margin:0;padding:0;list-style:none}
+.bullets li{position:relative;padding-left:25px;color:#d8eee2;font-size:clamp(15px,1.45vw,19px);line-height:1.45}
+.bullets li:before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px rgba(87,242,161,.45)}
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+.arch{display:grid;gap:10px;max-width:850px}
+.archbox{border:1px solid var(--line);border-radius:13px;background:var(--panel);padding:14px 18px;text-align:center}
+.archbox strong{display:block;color:var(--mint);font-size:clamp(14px,1.35vw,18px)}
+.archbox small{color:var(--muted);font-size:13px}
+.arrow{text-align:center;color:var(--green);font-size:22px;line-height:1}
+.providerrow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.provider{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:15px 8px;text-align:center}
+.provider strong{display:block;color:var(--green);font-size:clamp(13px,1.35vw,18px);margin-bottom:5px}
+.provider small{color:var(--muted);font-size:12px}
+.step{display:grid;grid-template-columns:42px 1fr;gap:14px;align-items:start;margin-bottom:17px}
+.num{width:38px;height:38px;display:grid;place-items:center;border-radius:12px;background:var(--green);color:#062016;font-weight:900}
+.step p{font-size:clamp(14px,1.25vw,17px)}
+.footer{position:absolute;bottom:24px;left:7vw;right:7vw;display:flex;justify-content:space-between;align-items:center;color:#78968a;font-size:12px;letter-spacing:.06em;text-transform:uppercase;pointer-events:none}
+.progress{position:absolute;left:0;bottom:0;height:4px;background:var(--green);width:16.666%;transition:width .25s}
+.controls{position:absolute;right:5vw;bottom:15px;display:flex;gap:8px;z-index:10}
+button{border:1px solid #2b5145;background:#0d211b;color:var(--text);border-radius:10px;padding:9px 14px;font-size:14px;cursor:pointer}
+button:hover{border-color:var(--green);color:var(--green)}
+button:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+.counter{position:absolute;left:7vw;bottom:16px;color:#78968a;font-size:12px}
+.bigmark{font-size:clamp(60px,10vw,130px);line-height:1;color:var(--green);filter:drop-shadow(0 0 30px rgba(87,242,161,.18))}
+.callout{border-left:3px solid var(--green);padding:4px 0 4px 17px;margin-top:20px}
+.tag{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--green);font-weight:800}
+@media(max-width:700px){
+ .slide{padding:35px 22px 75px}
+ .split{grid-template-columns:1fr;gap:20px}
+ .grid,.grid.three{grid-template-columns:1fr}
+ .providerrow{grid-template-columns:1fr}
+ .card{padding:17px}
+ .footer{left:22px;right:22px;bottom:48px}
+ .counter{left:22px;bottom:18px}
+ .controls{right:18px;bottom:10px}
+ .slide.active{justify-content:flex-start;padding-top:36px}
+}
+@media print{
+ html,body{height:auto;overflow:visible;background:white;color:#111}
+ .deck{height:auto;background:white}
+ .slide,.slide.active{display:flex!important;position:relative;inset:auto;min-height:100vh;page-break-after:always;break-after:page;color:#111;background:white;padding:40px}
+ .card,.archbox,.provider{background:#f5faf7;border-color:#bdd6c9}
+ p,.bullets li,.archbox small,.provider small{color:#34483e}
+ .footer,.counter,.controls,.progress{display:none}
+ h1,h2,h3{color:#10251b}
+}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+  <section class="slide active">
+    <div class="split">
+      <div>
+        <div class="eyebrow">Cybersecurity • OSINT • Project Presentation</div>
+        <h1>Open<span class="accent">Signal</span></h1>
+        <h2 style="font-size:clamp(24px,3.3vw,42px);margin-bottom:18px">Threat Intelligence Dashboard</h2>
+        <p class="sub">A Python-based web application for investigating domains and IP addresses through public threat intelligence sources.</p>
+        <div class="pills"><span class="pill">Python</span><span class="pill">Flask</span><span class="pill">HTML / CSS / JS</span><span class="pill">OSINT</span></div>
+      </div>
+      <div style="text-align:center">
+        <div class="bigmark">⌘</div>
+        <p style="margin-top:20px">One dashboard.<br>Multiple intelligence sources.</p>
+      </div>
+    </div>
+    <div class="footer"><span>OpenSignal</span><span>Project overview</span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow">01 / The challenge</div>
+    <h2>Problem Statement <span class="accent">&</span> Objectives</h2>
+    <div class="split">
+      <div class="card">
+        <div class="icon">◎</div><h3>Problem Statement</h3>
+        <p>Investigating a suspicious domain or IP can require analysts to switch between different platforms. Gathering and comparing results separately takes time and complicates preliminary analysis.</p>
+        <div class="callout"><p style="color:var(--mint)">OpenSignal brings relevant public intelligence into one interface.</p></div>
+      </div>
+      <div>
+        <div class="kicker" style="margin-bottom:16px">Project objectives</div>
+        <ul class="bullets">
+          <li>Check domain and IP reputation.</li>
+          <li>Review reported open ports and exposed services.</li>
+          <li>Discover public certificate transparency records.</li>
+          <li>Present findings in a unified dashboard.</li>
+          <li>Support quick preliminary investigations.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer"><span>OpenSignal</span><span>Problem & objectives</span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow">02 / Under the hood</div>
+    <h2>System Architecture <span class="accent">&</span> Technologies</h2>
+    <div class="split">
+      <div class="arch">
+        <div class="archbox"><strong>01 · User Interface</strong><small>HTML • CSS • JavaScript</small></div>
+        <div class="arrow">↓</div>
+        <div class="archbox"><strong>02 · Flask Backend</strong><small>Input validation • API coordination • Processing</small></div>
+        <div class="arrow">↓</div>
+        <div class="providerrow">
+          <div class="provider"><strong>VirusTotal</strong><small>Threat reputation</small></div>
+          <div class="provider"><strong>Shodan</strong><small>IP exposure</small></div>
+          <div class="provider"><strong>crt.sh</strong><small>Certificate records</small></div>
+        </div>
+        <div class="arrow">↓</div>
+        <div class="archbox"><strong>Processed Results</strong><small>Displayed in the dashboard</small></div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:14px"><div class="icon">⌘</div><h3>Core technologies</h3><p>Python 3 • Flask • Requests • JSON</p></div>
+        <div class="card"><div class="icon">▤</div><h3>Web interface</h3><p>HTML5 for structure, CSS3 for styling, and JavaScript for interactive features.</p></div>
+      </div>
+    </div>
+    <div class="footer"><span>OpenSignal</span><span>Architecture</span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow">03 / Core capabilities</div>
+    <h2>Main Features <span class="accent">&</span> Modules</h2>
+    <div class="grid">
+      <div class="card"><div class="icon">◉</div><h3>Threat Reputation</h3><p>Uses VirusTotal to retrieve available malicious, suspicious, harmless and undetected statistics.</p></div>
+      <div class="card"><div class="icon">⌁</div><h3>IP Exposure Analysis</h3><p>Uses Shodan to retrieve available host details, reported open ports and exposed services.</p></div>
+      <div class="card"><div class="icon">▣</div><h3>Certificate Discovery</h3><p>Uses crt.sh to find publicly available certificate records associated with a domain.</p></div>
+      <div class="card"><div class="icon">▦</div><h3>Unified Dashboard</h3><p>Organizes investigation results, provider status and recent searches; demo mode can show sample data.</p></div>
+    </div>
+    <div class="callout"><p style="font-size:14px">Live results depend on provider availability, target coverage and valid API credentials where required.</p></div>
+    <div class="footer"><span>OpenSignal</span><span>Features & modules</span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow">04 / From input to insight</div>
+    <h2>Workflow <span class="accent">&</span> Testing</h2>
+    <div class="split">
+      <div>
+        <div class="step"><div class="num">1</div><div><h3>Enter target</h3><p>Submit a domain, IP address or supported URL.</p></div></div>
+        <div class="step"><div class="num">2</div><div><h3>Validate input</h3><p>Normalize the target and reject invalid values.</p></div></div>
+        <div class="step"><div class="num">3</div><div><h3>Query providers</h3><p>Request relevant data from the available intelligence sources.</p></div></div>
+        <div class="step"><div class="num">4</div><div><h3>Process results</h3><p>Organize responses and handle unavailable services.</p></div></div>
+        <div class="step"><div class="num">5</div><div><h3>Display findings</h3><p>Present the available information on the dashboard.</p></div></div>
+      </div>
+      <div class="card">
+        <div class="tag">Testing scenarios</div>
+        <ul class="bullets" style="margin-top:18px">
+          <li>Valid domain or IP: lookup begins.</li>
+          <li>Invalid input: validation error.</li>
+          <li>Missing API key: provider limitation shown.</li>
+          <li>Demo mode: sample results displayed.</li>
+          <li>API unavailable: failure handled gracefully.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer"><span>OpenSignal</span><span>Workflow & testing</span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow">05 / Wrap-up</div>
+    <h2>Conclusion <span class="accent">&</span> Future Scope</h2>
+    <div class="split">
+      <div>
+        <div class="card">
+          <div class="icon">✓</div><h3>Conclusion</h3>
+          <p>OpenSignal centralizes several public intelligence lookups in one interface, helping users perform preliminary domain and IP investigations more efficiently.</p>
+          <div class="callout"><p style="color:var(--mint)">It supports investigation; it does not guarantee that a target is safe.</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="kicker" style="margin-bottom:16px">Future enhancements</div>
+        <ul class="bullets">
+          <li>User authentication and role-based access.</li>
+          <li>Secure database for investigation history.</li>
+          <li>PDF / CSV report export.</li>
+          <li>Scheduled monitoring and alerts.</li>
+          <li>More intelligence sources and visual analytics.</li>
+          <li>Secure production deployment.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pills"><span class="pill">Thank You</span><span class="pill">Questions?</span></div>
+    <div class="footer"><span>OpenSignal</span><span>Conclusion</span></div>
+  </section>
+
+
+  <section class="slide">
+    <div style="text-align:center;max-width:900px;margin:0 auto">
+      
+      
+      <h1 style="font-size:clamp(44px,8vw,100px)">THANK <span class="accent">YOU!</span></h1>
+      <p class="sub" style="margin:0 auto 28px">Thank you for your time and attention.</p>
+      <div class="pills" style="justify-content:center">
+        <span class="pill">Questions & Answers</span>
+        <span class="pill">Cybersecurity • OSINT</span>
+      </div>
+    </div>
+    <div class="footer"><span>OpenSignal</span><span>Thank you</span></div>
+  </section>
+
+  <div class="counter" id="counter">01 / 07</div>
+  <div class="controls">
+    <button id="prev" aria-label="Previous slide">← Previous</button>
+    <button id="next" aria-label="Next slide">Next →</button>
+    <button id="print" aria-label="Print slides">Print</button>
+  </div>
+  <div class="progress" id="progress"></div>
+</div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let current=0;
+function showSlide(n){
+ current=(n+slides.length)%slides.length;
+ slides.forEach((s,i)=>s.classList.toggle('active',i===current));
+ document.getElementById('counter').textContent=String(current+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');
+ document.getElementById('progress').style.width=((current+1)/slides.length*100)+'%';
+}
+document.getElementById('prev').addEventListener('click',()=>showSlide(current-1));
+document.getElementById('next').addEventListener('click',()=>showSlide(current+1));
+document.getElementById('print').addEventListener('click',()=>window.print());
+document.addEventListener('keydown',e=>{
+ if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();showSlide(current+1)}
+ if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();showSlide(current-1)}
+ if(e.key==='Home')showSlide(0);
+ if(e.key==='End')showSlide(slides.length-1);
+});
+showSlide(0);
+</script>
+</body>
+</html>

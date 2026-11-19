@@ -1,0 +1,49 @@
+{
+  "report_type": "OpenSignal public threat intelligence report",
+  "exported_at": "2026-10-15T07:53:54.254Z",
+  "target": "demo.example.net",
+  "target_type": "domain",
+  "demo": true,
+  "results": [
+    {
+      "provider": "VirusTotal",
+      "status": "ok",
+      "malicious": 2,
+      "suspicious": 1,
+      "harmless": 71,
+      "undetected": 4,
+      "reputation": -12,
+      "last_analysis_date": "2026-10-15T08:12:00Z"
+    },
+    {
+      "provider": "Shodan",
+      "status": "not_applicable",
+      "message": "Shodan host lookup requires an IP address."
+    },
+    {
+      "provider": "crt.sh",
+      "status": "ok",
+      "count": 18,
+      "certificates": [
+        {
+          "name": "login.demo.example.net",
+          "issuer": "C=US, O=Let's Encrypt, CN=R11",
+          "issued": "2026-10-11",
+          "expires": "2027-01-09"
+        },
+        {
+          "name": "*.demo.example.net",
+          "issuer": "C=US, O=Let's Encrypt, CN=R11",
+          "issued": "2026-09-29",
+          "expires": "2026-12-28"
+        },
+        {
+          "name": "mail.demo.example.net",
+          "issuer": "C=US, O=DigiCert Inc, CN=G2",
+          "issued": "2026-08-03",
+          "expires": "2027-08-03"
+        }
+      ]
+    }
+  ]
+}
