@@ -7,9 +7,6 @@
 
 **🔎 Investigate any domain, IP, or URL across VirusTotal, Shodan, and Certificate Transparency in a single query.**
 
-[![GitHub stars](https://img.shields.io/github/stars/visshh05/opensignal?style=for-the-badge&logo=github&color=00d9ff)](https://github.com/visshh05/opensignal/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/visshh05/opensignal?style=for-the-badge&logo=github&color=7b2cff)](https://github.com/visshh05/opensignal/network)
-[![Last commit](https://img.shields.io/github/last-commit/visshh05/opensignal?style=for-the-badge&logo=git&color=00c896)](https://github.com/visshh05/opensignal/commits)
 
 ![Python](https://img.shields.io/badge/Python-3.9%2B-00D9FF?style=for-the-badge&logo=python&logoColor=white)
 ![Flask](https://img.shields.io/badge/Flask-3.1-111827?style=for-the-badge&logo=flask&logoColor=white)
