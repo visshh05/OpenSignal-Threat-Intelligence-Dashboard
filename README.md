@@ -96,7 +96,7 @@ flowchart LR
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/<your-username>/opensignal.git
+git clone https://github.com/visshh05/opensignal.git
 cd opensignal
 
 # 2. Create and activate a virtual environment
